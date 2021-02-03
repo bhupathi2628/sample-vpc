@@ -21,23 +21,23 @@ resource "aws_vpc" "main_vpc" {
   } 
 }
 
-# resource "aws_subnet" "public_subnet" {
-#   count      = 3
-#   vpc_id     = aws_vpc.main_vpc.id
-#   cidr_block = "${cidrsubnet(var.vpc_cidr_block, 8, count.index)}"
+resource "aws_subnet" "public_subnet" {
+  count      = 3
+  vpc_id     = aws_vpc.main_vpc.id
+  cidr_block = "${cidrsubnet(var.vpc_cidr_block, 8, count.index)}"
 
-#   tags = {
-#     Name = "public_subnet-${count.index + 0}"
-#   }
-# }
+  tags = {
+    Name = "public_subnet-${count.index + 0}"
+  }
+}
 
-# resource "aws_subnet" "private_subnet" {
-#   count      = 3
-#   vpc_id     = aws_vpc.main_vpc.id
-#   cidr_block = "${cidrsubnet(var.vpc_cidr_block, 8, count.index + 3)}"
+resource "aws_subnet" "private_subnet" {
+  count      = 3
+  vpc_id     = aws_vpc.main_vpc.id
+  cidr_block = "${cidrsubnet(var.vpc_cidr_block, 8, count.index + 3)}"
 
-#   tags = {
-#     Name = "private_subnet-${count.index + 0}"
-#   }
-# }
+  tags = {
+    Name = "private_subnet-${count.index + 0}"
+  }
+}
 
